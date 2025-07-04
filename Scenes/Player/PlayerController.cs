@@ -58,8 +58,8 @@ public partial class PlayerController : CharacterBody3D
         {
             GodotObject obj = intersection["collider"].AsGodotObject();
             
-            myHUDText.Visible = (obj is Item);
-            myHUDText.Text = (obj as Item)?.myName;
+            myHUDText.Visible = (obj is IHasName);
+            myHUDText.Text = (obj as IHasName)?.GetName();
         }
         else
         {
@@ -210,7 +210,7 @@ public partial class PlayerController : CharacterBody3D
 
         GodotObject clicked = intersection["collider"].AsGodotObject();
 
-        (clicked as Interactable)?.Interact(this);
+        (clicked as IInteractable)?.Interact(this);
     }
 
     public void SwapHeldItem(Item aNewItem)

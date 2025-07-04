@@ -1,11 +1,12 @@
 using Godot;
 using System;
 
-public partial class Item : RigidBody3D, Interactable
+public partial class Item : RigidBody3D, IHasName, IInteractable
 {
     [Export]
-    public string myName = "N/A";
+    string myName = "N/A";
 
+    
     public virtual void Use() { }
 
     public virtual void OnPickup()
@@ -28,8 +29,13 @@ public partial class Item : RigidBody3D, Interactable
         Freeze = false;
     }
 
-    public virtual void Interact(PlayerController aInteractor)
+    public virtual void Interact(GodotObject aInteractor)
     {
-        aInteractor.SwapHeldItem(this);
+        (aInteractor as PlayerController).SwapHeldItem(this);
+    }
+
+    string IHasName.GetName()
+    {
+        return myName;
     }
 }
