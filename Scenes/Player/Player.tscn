@@ -8,6 +8,7 @@ radius = 0.3
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("myCamera", "myCameraPivot", "myHand", "myHUDText")]
 script = ExtResource("1_s0eop")
 mySpeed = 7
+myDropForce = 0.4
 myCamera = NodePath("CameraPivot/Camera")
 myCameraPivot = NodePath("CameraPivot")
 myHand = NodePath("CameraPivot/Hand")

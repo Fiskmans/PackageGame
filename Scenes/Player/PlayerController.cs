@@ -18,6 +18,8 @@ public partial class PlayerController : CharacterBody3D
 
     [Export]
     public float myReach { get; set; } = 16;
+    [Export]
+    public float myDropForce { get; set; } = 0.02f;
 
     [Export]
     public float myJumpStrength { get; set; } = 5;
@@ -207,6 +209,8 @@ public partial class PlayerController : CharacterBody3D
         }
 
         GodotObject clicked = intersection["collider"].AsGodotObject();
+
+        (clicked as Interactable)?.Interact(this);
     }
 
     public void SwapHeldItem(Item aNewItem)
@@ -218,8 +222,8 @@ public partial class PlayerController : CharacterBody3D
 
         aNewItem.GetParent()?.RemoveChild(aNewItem);
         myHand.AddChild(aNewItem);
-        myHeldObject.Transform = new Transform3D();
-        myHeldObject.OnPickup();
+        aNewItem.Transform = Transform3D.Identity;
+        aNewItem.OnPickup();
 
         myHeldObject = aNewItem;
     }
@@ -235,10 +239,15 @@ public partial class PlayerController : CharacterBody3D
         if (myHeldObject == null)
             return;
 
+        Transform3D globalPos = myHeldObject.GlobalTransform;
+
         myHand.RemoveChild(myHeldObject);
         GetTree().Root.AddChild(myHeldObject);
+
+        myHeldObject.GlobalTransform = globalPos;
+
         myHeldObject.AngularVelocity = Vector3.Zero;
-        myHeldObject.LinearVelocity = aVelocity;
+        myHeldObject.LinearVelocity = myCameraPivot.Transform * aVelocity + myTargetVelocity;
         myHeldObject.OnDrop();
 
         myHeldObject = null;

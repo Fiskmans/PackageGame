@@ -12,15 +12,23 @@ public partial class Item : RigidBody3D, Interactable
     {
         CollisionLayer &= ~Constants.PhysicsLayers.Collision;
         CollisionLayer &= ~Constants.PhysicsLayers.Interaction;
+
+        CollisionLayer &= ~Constants.PhysicsLayers.Collision;
+
+        Freeze = true;
     }
 
     public virtual void OnDrop()
     {
         CollisionLayer |= Constants.PhysicsLayers.Collision;
         CollisionLayer |= Constants.PhysicsLayers.Interaction;
+
+        CollisionLayer |= Constants.PhysicsLayers.Collision;
+
+        Freeze = false;
     }
 
-    public void Interact(PlayerController aInteractor)
+    public virtual void Interact(PlayerController aInteractor)
     {
         aInteractor.SwapHeldItem(this);
     }

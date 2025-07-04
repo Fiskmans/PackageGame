@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2x2nxpnfe8hs"]
+
+[ext_resource type="Script" uid="uid://c43vul7hp0ykj" path="res://Box/Box.cs" id="1_ebkpb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_42nxc"]
+albedo_color = Color(0.780392, 0.662745, 0.505882, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mckbn"]
+material = SubResource("StandardMaterial3D_42nxc")
+size = Vector3(0.6, 0.4, 0.8)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_cmh7u"]
+points = PackedVector3Array(0.3, 0.2, 0.4, 0.3, -0.2, 0.4, 0.3, 0.2, -0.4, -0.3, 0.2, 0.4, -0.3, -0.2, 0.4, 0.3, -0.2, -0.4, -0.3, 0.2, -0.4, -0.3, -0.2, -0.4)
+
+[node name="Box" type="RigidBody3D"]
+collision_layer = 3
+script = ExtResource("1_ebkpb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_mckbn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_cmh7u")
