@@ -53,7 +53,7 @@ public partial class PlayerController : CharacterBody3D
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
-        Dictionary intersection = DoRayCast((uint)2);
+        Dictionary intersection = DoRayCast(Constants.PhysicsLayers.Interaction);
         if(intersection.Count > 0)
         {
             GodotObject obj = intersection["collider"].AsGodotObject();
