@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://lh6stj5bp5vu"]
+[gd_scene load_steps=7 format=3 uid="uid://lh6stj5bp5vu"]
 
 [ext_resource type="PackedScene" uid="uid://cc74mssbei3as" path="res://Scenes/Structures/Wall.tscn" id="1_hpc76"]
 [ext_resource type="PackedScene" uid="uid://wdoh65eimmcc" path="res://Scenes/Structures/Floor.tscn" id="2_tr2i4"]
 [ext_resource type="PackedScene" uid="uid://8vlmh2q1s3we" path="res://Scenes/Player/Player.tscn" id="3_nhkr4"]
 [ext_resource type="PackedScene" uid="uid://d2x2nxpnfe8hs" path="res://Box/Box.tscn" id="4_7rqgy"]
 [ext_resource type="PackedScene" uid="uid://daplmnl1u2lf8" path="res://Scenes/Structures/BoxInlet.tscn" id="5_qxria"]
+[ext_resource type="PackedScene" uid="uid://b5ntnph4x4b4h" path="res://Scenes/Structures/BoxTurnIn/BoxTurnIn.tscn" id="6_y4jh7"]
 
 [node name="MainScene" type="Node3D"]
 
@@ -211,5 +212,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.50041, 0, 6.03843)
 [node name="Box" parent="." instance=ExtResource("4_7rqgy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.14542, 0.225, 3.98838)
 
-[node name="Wall" parent="." instance=ExtResource("5_qxria")]
+[node name="Inlet" parent="." instance=ExtResource("5_qxria")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 0, 8)
+
+[node name="Turn in" parent="." instance=ExtResource("6_y4jh7")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, 0, 0)

@@ -1,0 +1,78 @@
+[gd_scene load_steps=10 format=3 uid="uid://b5ntnph4x4b4h"]
+
+[ext_resource type="Script" uid="uid://ves51df4afkm" path="res://Scenes/Structures/BoxTurnIn/BoxTurnIn.cs" id="1_ojide"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_f55w5"]
+points = PackedVector3Array(-0.51, -0.75, -0.5, -0.51, -0.75, 0.5, -0.51, 0.75, -0.5, 0.51, -0.75, -0.5, 0.51, -0.75, 0.5, -0.51, 0.75, 0.5, 0.51, 0.75, -0.5, 0.51, 0.75, 0.5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dkwuo"]
+points = PackedVector3Array(0.01, 0.5, 0.1, -0.01, 0.5, 0.1, 0.01, -0.5, 0.1, 0.01, 0.5, -0.1, -0.01, 0.5, -0.1, -0.01, -0.5, 0.1, 0.01, -0.5, -0.1, -0.01, -0.5, -0.1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_yxcsx"]
+points = PackedVector3Array(0.01, 0.5, 0.1, -0.01, 0.5, 0.1, 0.01, -0.5, 0.1, 0.01, 0.5, -0.1, -0.01, 0.5, -0.1, -0.01, -0.5, 0.1, 0.01, -0.5, -0.1, -0.01, -0.5, -0.1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_q01fp"]
+points = PackedVector3Array(-0.01, -0.1, -0.3, 0.01, -0.1, -0.3, -0.01, -0.1, 0.3, -0.01, 0.1, -0.3, 0.01, 0.1, -0.3, 0.01, -0.1, 0.3, -0.01, 0.1, 0.3, 0.01, 0.1, 0.3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ywi16"]
+size = Vector3(1.02, 1.5, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qjjn8"]
+size = Vector3(0.02, 1, 0.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_j8bah"]
+size = Vector3(0.02, 0.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ok4na"]
+size = Vector3(0.8, 0.91864, 0.8)
+
+[node name="Turn in" type="Node3D"]
+
+[node name="Collision" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.75, 0.5)
+shape = SubResource("ConvexPolygonShape3D_f55w5")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0.1)
+shape = SubResource("ConvexPolygonShape3D_dkwuo")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0.9)
+shape = SubResource("ConvexPolygonShape3D_yxcsx")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0.5)
+shape = SubResource("ConvexPolygonShape3D_q01fp")
+
+[node name="Visuals" type="Node3D" parent="."]
+
+[node name="Bottom" type="MeshInstance3D" parent="Visuals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.75, 0.5)
+mesh = SubResource("BoxMesh_ywi16")
+skeleton = NodePath("../../root/@EditorNode@21298/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11479/@VSplitContainer@11131/@HSplitContainer@11133/@HSplitContainer@11135/@Control@11136/@SubViewportContainer@11137/@SubViewport@11138/Wall")
+
+[node name="Right" type="MeshInstance3D" parent="Visuals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0.1)
+mesh = SubResource("BoxMesh_qjjn8")
+skeleton = NodePath("../Bottom")
+
+[node name="Left" type="MeshInstance3D" parent="Visuals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0.9)
+mesh = SubResource("BoxMesh_qjjn8")
+skeleton = NodePath("../Bottom")
+
+[node name="Top" type="MeshInstance3D" parent="Visuals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0.5)
+mesh = SubResource("BoxMesh_j8bah")
+skeleton = NodePath("../Bottom")
+
+[node name="Turn in area" type="Area3D" parent="."]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -0.5, 1.5, 0.5)
+script = ExtResource("1_ojide")
+myConsumeSpeed = 20.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Turn in area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.447113, 0)
+shape = SubResource("BoxShape3D_ok4na")

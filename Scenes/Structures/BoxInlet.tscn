@@ -73,7 +73,7 @@ _data = {
 &"RESET": SubResource("Animation_y7inn")
 }
 
-[node name="Wall" type="Node3D"]
+[node name="Inlet" type="Node3D"]
 
 [node name="Collision" type="StaticBody3D" parent="."]
 
