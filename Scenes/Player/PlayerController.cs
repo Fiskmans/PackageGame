@@ -239,12 +239,7 @@ public partial class PlayerController : CharacterBody3D
         if (myHeldObject == null)
             return;
 
-        Transform3D globalPos = myHeldObject.GlobalTransform;
-
-        myHand.RemoveChild(myHeldObject);
-        GetTree().Root.AddChild(myHeldObject);
-
-        myHeldObject.GlobalTransform = globalPos;
+        myHeldObject.Reparent(GetTree().Root, true);
 
         myHeldObject.AngularVelocity = Vector3.Zero;
         myHeldObject.LinearVelocity = myCameraPivot.Transform * aVelocity + myTargetVelocity;
