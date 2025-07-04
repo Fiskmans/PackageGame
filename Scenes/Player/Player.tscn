@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://8vlmh2q1s3we"]
+
+[ext_resource type="Script" uid="uid://gkyry5s0wlh8" path="res://Scenes/Player/PlayerController.cs" id="1_s0eop"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qbkls"]
+radius = 0.3
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("myCamera", "myCameraPivot", "myHand", "myHUDText")]
+script = ExtResource("1_s0eop")
+mySpeed = 7
+myCamera = NodePath("CameraPivot/Camera")
+myCameraPivot = NodePath("CameraPivot")
+myHand = NodePath("CameraPivot/Hand")
+myHUDText = NodePath("CameraPivot/Camera/HoveredItem")
+
+[node name="CameraPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+
+[node name="Camera" type="Camera3D" parent="CameraPivot"]
+current = true
+
+[node name="HoveredItem" type="Label" parent="CameraPivot/Camera"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -23.0
+offset_right = 100.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Hand" type="Node3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35041, -0.869335)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_qbkls")
