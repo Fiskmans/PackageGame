@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://d2x2nxpnfe8hs"]
+[gd_scene load_steps=6 format=3 uid="uid://d2x2nxpnfe8hs"]
 
 [ext_resource type="Script" uid="uid://c43vul7hp0ykj" path="res://Box/Box.cs" id="1_ebkpb"]
+[ext_resource type="PackedScene" uid="uid://hdsfmdwjp5xu" path="res://Box/LabelScene.tscn" id="2_3byu8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_42nxc"]
 albedo_color = Color(0.780392, 0.662745, 0.505882, 1)
@@ -24,3 +25,6 @@ mesh = SubResource("BoxMesh_mckbn")
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 shape = SubResource("ConvexPolygonShape3D_ebkpb")
+
+[node name="Label" parent="." instance=ExtResource("2_3byu8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.26093, 0.359675, 0.405447)

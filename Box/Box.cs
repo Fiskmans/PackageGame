@@ -3,6 +3,7 @@ using System;
 
 public partial class Box : Item
 {
+
     public override void Interact(GodotObject aInteractor)
     {
         base.Interact(aInteractor);

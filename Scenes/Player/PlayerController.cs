@@ -1,10 +1,6 @@
 using Godot;
 using Godot.Collections;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using static Godot.TextServer;
 
 
 public partial class PlayerController : CharacterBody3D
